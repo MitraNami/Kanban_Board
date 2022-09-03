@@ -12,3 +12,7 @@ export enum TaskStatuses {
 }
 
 type TaskStatus = TaskStatuses.UNSTARTED | TaskStatuses.COMPLETED | TaskStatuses.IN_PROGRESS;
+
+export interface TasksState {
+  tasks: Task[];
+}
