@@ -1,27 +1,16 @@
 import TasksPage from "./components/Taskspage";
-import { Task, TaskStatuses } from './components/types';
+import { Task, TasksState } from './components/types';
+import { connect } from 'react-redux';
 
-const mockTasks: Task[] = [
-  {
-    id: 1,
-    title: 'Learn Redux',
-    description: 'The store, actions, and reducers, oh my!',
-    status: TaskStatuses.IN_PROGRESS,
-  },
-  {
-    id: 2,
-    title: 'Peace on Earth',
-    description: 'No big deal.',
-    status: TaskStatuses.IN_PROGRESS,
-  },
-];
 
-function App() {
+function App(props: { tasks: Task[] }) {
   return (
     <div className="main-content">
-      <TasksPage tasks={mockTasks} />
+      <TasksPage tasks={props.tasks} />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = (state: TasksState) => ({ tasks: state.tasks });
+
+export default connect(mapStateToProps) (App);
