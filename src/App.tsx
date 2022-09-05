@@ -2,12 +2,13 @@ import TasksPage from "./components/Taskspage";
 import { NewTaskData, Task, TasksState } from './components/types';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
+import { createTask } from './actions';
 
 
 function App(props: { tasks: Task[], dispatch: Dispatch}) {
   
   const onCreateTask = (taskData: NewTaskData) => {
-    props.dispatch({type: 'CREATE_TASK', payload: {...taskData}});
+    props.dispatch(createTask(taskData));
   };
 
   return (
