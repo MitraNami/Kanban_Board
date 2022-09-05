@@ -18,3 +18,10 @@ type TaskStatus = TaskStatuses.UNSTARTED | TaskStatuses.COMPLETED | TaskStatuses
 export interface TasksState {
   tasks: Task[];
 }
+
+interface CreateTaskAction {
+  type: string;
+  payload: Task;
+}
+
+export type TasksAction = CreateTaskAction;
