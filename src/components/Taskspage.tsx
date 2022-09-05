@@ -1,10 +1,11 @@
 import TaskList from "./TaskList";
-import { Task, TaskStatuses } from "./types";
+import { Task, TaskStatuses, NewTaskData } from "./types";
+import NewTaskForm from "./NewTaskForm";
 
 const TASK_STATUSES = [TaskStatuses.UNSTARTED, TaskStatuses.IN_PROGRESS, TaskStatuses.COMPLETED];
 
 const TasksPage = (props: TasksPageProps) => {
-  const { tasks } = props;
+  const { tasks, onCreateTask } = props;
 
   const renderTaskLists = () => {
     return TASK_STATUSES.map(status => { 
@@ -15,6 +16,7 @@ const TasksPage = (props: TasksPageProps) => {
 
   return (
     <div className="tasks">
+      <NewTaskForm onCreateTask = {onCreateTask} />
       <div className="task-lists">
         {renderTaskLists()}
       </div>
@@ -24,6 +26,7 @@ const TasksPage = (props: TasksPageProps) => {
 
 type TasksPageProps = {
   tasks: Task[];
+  onCreateTask: (newTask: NewTaskData) => void
 };
 
 export default TasksPage;

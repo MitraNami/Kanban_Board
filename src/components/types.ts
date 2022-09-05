@@ -5,6 +5,8 @@ export interface Task {
   description: string;
 }
 
+export type NewTaskData = Pick<Task, 'title' | 'description'>;
+
 export enum TaskStatuses {
   UNSTARTED = 'Unstarted',
   COMPLETED = 'Completed',
