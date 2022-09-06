@@ -1,8 +1,8 @@
 import TasksPage from "./components/Taskspage";
-import { NewTaskData, Task, TasksState } from './components/types';
+import { EditTaskData, NewTaskData, Task, TasksState } from './components/types';
 import { connect } from 'react-redux';
 import { Dispatch } from "redux";
-import { createTask } from './actions';
+import { createTask, editTask } from './actions';
 
 
 function App(props: { tasks: Task[], dispatch: Dispatch}) {
@@ -11,9 +11,17 @@ function App(props: { tasks: Task[], dispatch: Dispatch}) {
     props.dispatch(createTask(taskData));
   };
 
+  const onStatusChange = (editTaskData: EditTaskData) => {
+    props.dispatch(editTask(editTaskData)); 
+  };
+
   return (
     <div className="main-content">
-      <TasksPage tasks={props.tasks} onCreateTask={onCreateTask} />
+      <TasksPage 
+        tasks={props.tasks} 
+        onCreateTask={onCreateTask} 
+        onStatusChange={onStatusChange} 
+      />
     </div>
   );
 }

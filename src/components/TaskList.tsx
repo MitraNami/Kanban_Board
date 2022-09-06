@@ -1,5 +1,5 @@
 import Task from './Task';
-import { Task as TaskType } from './types';
+import { Task as TaskType, EditTaskData } from './types';
 
 const TaskList = (props: TaskListProps) => {
   return (
@@ -8,7 +8,7 @@ const TaskList = (props: TaskListProps) => {
         <strong>{props.status}</strong>
       </div>
       {props.tasks.map(task => (
-        <Task key={task.id} task={task} />
+        <Task key={task.id} task={task} onStatusChange={props.onStatusChange} />
       ))}
     </div>
   );
@@ -16,7 +16,8 @@ const TaskList = (props: TaskListProps) => {
 
 type TaskListProps = {
   status: TaskType['status'];
-  tasks: TaskType[]
+  tasks: TaskType[];
+  onStatusChange: (updatedData: EditTaskData) => void;
 }
 
 export default TaskList;
