@@ -1,5 +1,5 @@
 import { Task, TaskStatuses, TasksState, TasksAction } from "../components/types";
-import { uniqueId, CREATE_TASK_TYPE } from "../actions";
+import { uniqueId, CREATE_TASK_TYPE, EDIT_TASK } from "../actions";
 
 const mockTasks: Task[] = [
   {
@@ -19,9 +19,17 @@ const mockTasks: Task[] = [
 const defaulState : TasksState = { tasks: mockTasks};
 
 
-export default function tasks(state = defaulState, action: TasksAction) {
+export default function tasks(state = defaulState, action: any) {
   if (action.type === CREATE_TASK_TYPE) {
     return {...state, tasks: [action.payload, ...state.tasks]};
+  } else if (action.type === EDIT_TASK) {
+    const updatedTasks = state.tasks.map(task => {
+      if (task.id === action.payload.id) {
+        return {...task, ...action.payload};
+      }
+      return task;
+    });
+    return {...state, tasks: updatedTasks};
   }
   return state;
 }
