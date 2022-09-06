@@ -24,4 +24,16 @@ interface CreateTaskAction {
   payload: Task;
 }
 
-export type TasksAction = CreateTaskAction;
+// it' really Task type, and one of the optionals needs to be required!!!
+export type EditTaskData = {
+  id: number;
+  status?: string;
+  title?: string;
+  description?: string;
+}
+interface EditTaskAction {
+  type: string;
+  payload: EditTaskData;
+}
+
+export type TasksAction = CreateTaskAction | EditTaskAction;
