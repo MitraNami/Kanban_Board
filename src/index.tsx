@@ -31,7 +31,12 @@ if (module.hot) {
         </Provider>
       </React.StrictMode>
     );
-  })
+  });
+
+  module.hot.accept('./reducers', () => {
+    const nextRootReducer = require('./reducers').default;
+    store.replaceReducer(nextRootReducer);
+  });
 }
 
 // If you want to start measuring performance in your app, pass a function
