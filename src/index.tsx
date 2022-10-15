@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import { devToolsEnhancer } from 'redux-devtools-extension';
 import tasks from './reducers';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-const store = createStore(tasks);
+const store = createStore(tasks, devToolsEnhancer({}));
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
